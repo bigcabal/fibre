@@ -37,18 +37,22 @@ function fadeOut(element, isLoader) {
             element.style.display = 'none';
 
             /* */
-            if ( isLoader ) {
+            // if ( isLoader ) {
 
+            //   displayMessage(counter);
+
+            // } else {
+
+              
+              
+
+            // }
+
+            if ( !isLoader ) { counter++; }
+
+            setTimeout(function() {
               displayMessage(counter);
-
-            } else {
-
-              counter++;
-              setTimeout(function() {
-                displayMessage(counter);
-              }, 500)
-
-            }
+            }, 500)
             
         }
         element.style.opacity = op;
