@@ -7,11 +7,11 @@
 var strings = [
   {
     string: "Ehen...hello!",
-    waiting: 1500
+    waiting: 2000
   },
   {
     string: "So you made it here. O kare (very good).",
-    waiting: 2000
+    waiting: 2500
   },
   {
     string: "I am Igi. And I have been here a long time.",
@@ -35,18 +35,6 @@ function fadeOut(element, isLoader) {
         if (op <= 0.1){
             clearInterval(timer);
             element.style.display = 'none';
-
-            /* */
-            // if ( isLoader ) {
-
-            //   displayMessage(counter);
-
-            // } else {
-
-              
-              
-
-            // }
 
             if ( !isLoader ) { counter++; }
 
