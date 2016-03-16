@@ -46,7 +46,7 @@ function fadeOut(element, isLoader) {
               counter++;
               setTimeout(function() {
                 displayMessage(counter);
-              }, 1000)
+              }, 500)
 
             }
             
