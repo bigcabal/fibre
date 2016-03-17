@@ -1,25 +1,13 @@
+/* 
+ * MAIN SCRIPT FILE 
+ * 
+ * Don't edit unless you know what you're doing
+ *
+*/
 
 
-/* MESSAGES */
-// Also set how long the message should display on the screen for
-// Default is 5 seconds
 
-var strings = [
-  {
-    string: "Ehen...hello!",
-    waiting: 2000
-  },
-  {
-    string: "So you made it here. O kare (very good).",
-    waiting: 2500
-  },
-  {
-    string: "I am Igi. And I have been here a long time.",
-    waiting: 2000
-  },
-];
-
-
+// SETUP VARIABLES
 
 var target = document.getElementById('target');
 var loader = document.getElementById('loader');
@@ -27,7 +15,14 @@ var counter = 0;
 
 
 
-/* */
+// HELPER FUNCTIONS
+
+function resetPage() {
+  loader.children[0].style.display = "none";
+  target.style.display = "none";
+  fadeIn(loader);
+  counter = 0;
+}
 
 function fadeOut(element, isLoader) {
     var op = 1; 
@@ -74,8 +69,14 @@ function displayMessage(counter) {
           fadeOut(target)
         }, strings[counter].waiting)
 
-    }
+    } 
 
+    if ( counter === (strings.length - 1) ) {
+
+        setTimeout(function() {
+          resetPage();
+        }, strings[counter].waiting)
+    }
   }
 }
 
@@ -92,7 +93,7 @@ function displayLoader() {
 
 
 
-/* PUSHER */
+// PUSHER STUFF
 
 var pusher = new Pusher('0a50e9c19220c6262ffc', {
  cluster: 'eu',
@@ -100,14 +101,15 @@ var pusher = new Pusher('0a50e9c19220c6262ffc', {
 });
 
 
-
 var channel = pusher.subscribe('fibre');
 channel.bind('my_event', function(data) {
 
   console.log(data);
+  //displayLoader(); uncomment
 
 });
 
+// comment this out when done with testing
 setTimeout(function() {
   displayLoader();
 }, 1000)
