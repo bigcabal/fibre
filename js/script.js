@@ -17,13 +17,6 @@ var counter = 0;
 
 // HELPER FUNCTIONS
 
-function resetPage() {
-  loader.children[0].style.display = "none";
-  target.style.display = "none";
-  fadeIn(loader);
-  counter = 0;
-}
-
 function fadeOut(element, isLoader) {
     var op = 1; 
     var timer = setInterval(function () {
@@ -57,26 +50,29 @@ function fadeIn(element) {
     }, 50);
 }
 
+function resetPage() {
+  loader.children[0].style.display = "none";
+  target.style.display = "none";
+  fadeIn(loader);
+  counter = 0;
+}
+
 function displayMessage(counter) {
   if ( counter < strings.length ) {
     target.innerHTML = strings[counter].string;
 
     fadeIn(target);
 
-    if ( counter < (strings.length - 1) ) {
+    setTimeout(function() {
 
-        setTimeout(function() {
-          fadeOut(target)
-        }, strings[counter].waiting)
+      if ( counter < (strings.length - 1) ) {
+        fadeOut(target)
+      } else {
+        resetPage();
+      }
+      
+    }, strings[counter].waiting)
 
-    } 
-
-    if ( counter === (strings.length - 1) ) {
-
-        setTimeout(function() {
-          resetPage();
-        }, strings[counter].waiting)
-    }
   }
 }
 
@@ -104,7 +100,7 @@ var pusher = new Pusher('0a50e9c19220c6262ffc', {
 var channel = pusher.subscribe('fibre');
 channel.bind('my_event', function(data) {
 
-  displayLoader(); uncomment
+  displayLoader();
 
 });
 
