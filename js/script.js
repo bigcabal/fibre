@@ -104,15 +104,14 @@ var pusher = new Pusher('0a50e9c19220c6262ffc', {
 var channel = pusher.subscribe('fibre');
 channel.bind('my_event', function(data) {
 
-  console.log(data);
-  //displayLoader(); uncomment
+  displayLoader(); uncomment
 
 });
 
 // comment this out when done with testing
-setTimeout(function() {
-  displayLoader();
-}, 1000)
+// setTimeout(function() {
+//   displayLoader();
+// }, 1000)
 
 
 
